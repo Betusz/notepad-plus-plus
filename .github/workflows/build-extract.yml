@@ -75,8 +75,13 @@ jobs:
       - name: Create validate_and_hash.py
         shell: pwsh
         run: |
+          if (-not (Test-Path tools)) {
           New-Item -ItemType Directory -Path tools | Out-Null
-          # (pega aquí el heredoc de arriba si no lo comiteaste)
+          }
+          @'
+          import sys, hashlib, json, pathlib
+
+          '@ | Out-File tools\validate_and_hash.py -Encoding utf8
 
       - name: Validate PE files
         shell: pwsh
