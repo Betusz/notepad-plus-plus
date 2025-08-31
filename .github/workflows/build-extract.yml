@@ -42,9 +42,9 @@ jobs:
           $exts = @("*.exe","*.dll","*.msi","*.zip","*.7z")
           foreach ($e in $exts) {
           $n = (Get-ChildItem -Recurse -File -Path artifacts -Filter $e | Measure-Object).Count
-          Write-Host "$e: $n"
+           Write-Host "${e}: $n"
           }
-          
+
       - name: Validate PE files (pefile + LIEF)
         shell: pwsh
         run: |
